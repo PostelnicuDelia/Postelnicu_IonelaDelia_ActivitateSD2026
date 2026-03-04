@@ -6,7 +6,7 @@ struct Produs {
 	int stoc;
 	char* denumire;  //char* ocupa 4 octeti daca avem arhitectura pe 36 de biti si 8 octeti la 64 de biti
 	float pret; //float ocupa 4 octeti, double 8
-	char categorie; //char ocupa 255, un byte (octet)
+	char categorie; //unsigned char ocupa un byte (octet), iar valoare maxima pe care o atinge este 255; char are semn, deci primul bit este pentru semn, valoare maxima 174
 };
 
 struct Produs initializare(int id, int stoc, char* denumire, float pret, char categorie) {
@@ -34,9 +34,9 @@ void afisare(struct Produs s) {
 
 void modifica_Denumire(struct Produs* s, char* denumireNoua) {
 	//modificarea unui atribut
-	free(s->denumire);//se sterge memoria din locul vechi
+	free(s->denumire);//sterge ce se afla la adresa denumirii, elibereaza memoria respectiva, pentru a evita memory leaks
 	s->denumire = (char*)malloc(sizeof(char) * strlen(denumireNoua) + 1);//se aloca o noua zona de memorie
-	strcpy(s->denumire, denumireNoua);//se copiaza de numirea noua in noua zona de memorie,,,, daca nu ransmit orin adresa, noua adresa de memorie se va sterge la incheierea functiei si va ramane adresa veche la denumire, care este stearsa, dei nu e bine prin valoare
+	strcpy(s->denumire, denumireNoua);
 }
 
 void dezalocare(struct Produs* s) {
