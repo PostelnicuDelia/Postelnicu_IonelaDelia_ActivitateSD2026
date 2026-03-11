@@ -87,6 +87,8 @@ void citireVectorStudentiFaraReturnare(const char* numeFisier, int* nrStudenti, 
 	fisier = fopen(numeFisier, "r");
 
 	(*nrStudenti) = 0;
+	*Studenti = NULL;
+
 	while(!feof(fisier)){
 		adaugaStudent(Studenti, nrStudenti, citireStudFisier(fisier));
 }
@@ -107,9 +109,16 @@ void dezalocare(Student** studenti, int* nrStudenti) {
 
 void main() {
 	Student* stud=NULL;
+	Student* studenti = NULL;
 	int nrstudenti = 0;
 
-	stud = citireVEctorStudenti("studenti.txt", &nrstudenti);
+	/*stud = citireVEctorStudenti("studenti.txt", &nrstudenti);
 	afisareVectorStudenti(stud, nrstudenti);
+	dezalocare(&stud, &nrstudenti);*/
+
+	int nrstudenti2 = 0;
+	citireVectorStudentiFaraReturnare("studenti.txt", &nrstudenti, &studenti);
+	afisareVectorStudenti(studenti, nrstudenti);
+	dezalocare(&studenti, &nrstudenti);
 
 }
