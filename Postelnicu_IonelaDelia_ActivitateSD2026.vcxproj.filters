@@ -27,6 +27,9 @@
     <ClCompile Include="Invat_acasa.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="seminar04.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="masini.txt" />
