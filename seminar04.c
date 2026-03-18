@@ -15,6 +15,7 @@ struct StructuraMasina {
 };
 typedef struct StructuraMasina Masina;
 typedef struct Nod Nod;
+
 struct Nod {
 	Masina info;
 	Nod* next;
@@ -163,9 +164,16 @@ void stergeMasiniDinSeria(Nod** cap, char serieCautata) {
 	}
 }
 
-float calculeazaPretulMasinilorUnuiSofer(/*lista masini*/ const char* numeSofer) {
-	//calculeaza pretul tuturor masinilor unui sofer.
-	return 0;
+float calculeazaPretulMasinilorUnuiSofer(Nod* cap,const char* numeSofer) {
+	float pretTotal = 0;
+
+	while (cap) {
+		if (strcmp(cap->info.numeSofer, numeSofer) == 0) {
+			pretTotal += cap->info.pret;
+		}
+		cap = cap->next;
+	}
+	return pretTotal;
 }
 
 int main() {
@@ -174,9 +182,8 @@ int main() {
 	cap = citireListaMasiniDinFisier("masini.txt");
 	afisareListaMasini(cap);
 
-
-
 	printf("Pretul mediu=%5.2f\n", calculeazaPretMediu(cap));
+	printf("\nPretul total pentru soferul Gigel= %5.2f\n", calculeazaPretulMasinilorUnuiSofer(cap, "Gigel"));
 
 
 	printf("Stergere serie A\n");
@@ -184,6 +191,7 @@ int main() {
 
 	printf("\nLista dupa stegre A\n");
 	afisareListaMasini(cap);
+
 
 	dezalocareListaMasini(&cap);
 	printf("\nLista dupa dezalocare\n");
