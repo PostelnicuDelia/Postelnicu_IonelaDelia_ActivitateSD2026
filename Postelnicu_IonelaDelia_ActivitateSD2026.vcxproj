@@ -128,9 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Invat_acasa.c" />
+    <ClCompile Include="Invat_acasa2.c" />
     <ClCompile Include="seminar02.c" />
     <ClCompile Include="seminar03.c" />
     <ClCompile Include="seminar04.c" />
+    <ClCompile Include="seminar05.c" />
     <ClCompile Include="Seminar1.c" />
   </ItemGroup>
   <ItemGroup>
