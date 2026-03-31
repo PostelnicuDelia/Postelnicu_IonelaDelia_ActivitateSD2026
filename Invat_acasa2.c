@@ -31,3 +31,41 @@
 //
 //	return s;
 //}
+//
+//void afisareStudent(Student s) {
+//	printf("Id: %d\n", s.id);
+//	printf("Nume: %s\n", s.nume);
+//	printf("Media: %5.2\n", s.medie);
+//	printf("\n");
+//}
+//
+//void afisareListaStudenti(Nod* cap) {
+//	while (cap != NULL) {
+//		afisareStudent(cap->informatii);
+//		cap = cap->next;
+//	}
+//}
+//
+//void adaugaStudInListaFinal(Nod** cap, Student studNou) {
+//	Nod* nou = (Nod*)malloc(sizeof(Nod));
+//	nou->informatii = studNou;
+//	nou->next = NULL;
+//
+//	if (*cap == NULL) {
+//		*cap = nou;
+//	}
+//	else {
+//		Nod* aux = (*cap);
+//		while (aux->next) {
+//			aux = aux->next;
+//		}
+//		aux->next = nou;
+//	}
+//}
+//
+//int main() {
+//	Nod* cap = adaugaStudInListaFinal
+//
+//
+//	return 0;
+//}
