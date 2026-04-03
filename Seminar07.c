@@ -84,13 +84,13 @@ void adaugaMasinaInLista(Nod** cap, Masina masinaNoua) {
 	else {
 		(*cap) = nodNou;
 	}
-	
+
 }
 
 HashTable initializareHashTable(int dimensiune) {
 	HashTable ht;
 	ht.dim = dimensiune;
-	ht.vector = (Nod**)malloc(sizeof(Nod) * dimensiune);
+	ht.vector = (Nod**)malloc(sizeof(Nod*) * dimensiune);
 	for (int i = 0;i < dimensiune;i++)
 	{
 		ht.vector[i] = NULL;
@@ -137,15 +137,34 @@ HashTable citireMasiniDinFisier(const char* numeFisier) {
 void afisareTabelaDeMasini(HashTable ht) {
 	for (int i = 0;i < ht.dim;i++) {
 		if (ht.vector[i] != NULL) {
-			printf("Cluster %d:\n", i+1);
+			printf("Cluster %d:\n", i + 1);
 			afisareListaMasini(ht.vector[i]);
 			printf("========================================================================================\n");
 		}
 	}
 }
 
+
 void dezalocareTabelaDeMasini(HashTable* ht) {
-	//sunt dezalocate toate masinile din tabela de dispersie
+	if (ht != NULL && ht->vector != NULL)
+	{
+		for (int i = 0;i < ht->dim;i++) {
+			Nod* nod = ht->vector[i];
+			while (nod) {
+				Nod* aux = nod;
+				nod = nod->next;
+				if (aux->info.model != NULL)
+					free(aux->info.model);
+				if (aux->info.numeSofer != NULL)
+					free(aux->info.numeSofer);
+				free(aux);
+			}
+			ht->vector[i] = NULL;
+		}
+		free(ht->vector);
+		ht->vector = NULL;
+		ht->dim = 0;
+	}
 }
 
 float* calculeazaPreturiMediiPerClustere(HashTable ht, int* nrClustere) {
@@ -159,7 +178,7 @@ float* calculeazaPreturiMediiPerClustere(HashTable ht, int* nrClustere) {
 
 	float* vectorPreturi = malloc(sizeof(float) * (*nrClustere));
 	int k = 0;
-	
+
 
 	for (int i = 0;i < ht.dim;i++) {
 		if (ht.vector[i] != NULL) {
@@ -204,13 +223,19 @@ int main() {
 	HashTable tabela = citireMasiniDinFisier("masini.txt");
 	afisareTabelaDeMasini(tabela);
 	Masina m = getMasinaDupaCheie(tabela, 20);
-		printf("Masina dupa id este:\n");
+	printf("Masina dupa id este:\n");
 	afisareMasina(m);
 	int nrClustere;
+	printf("\n Preturi medii:\n");
 	float* vectorPreturi = calculeazaPreturiMediiPerClustere(tabela, &nrClustere);
 	for (int i = 0;i < nrClustere;i++) {
 		printf("Pentru clusterul cu indecele %d, media este %.2f:\n", i, vectorPreturi[i]);
 	}
 
+	printf("\n Dezalocare:\n");
+
+	dezalocareTabelaDeMasini(&tabela);
+	printf("\nAfisare tabela dupa dezalocare:\n");
+	afisareTabelaDeMasini(tabela);
 	return 0;
 }
