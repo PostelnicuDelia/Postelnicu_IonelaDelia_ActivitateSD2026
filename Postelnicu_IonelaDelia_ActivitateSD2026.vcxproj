@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Biblioteca_stiva.c" />
     <ClCompile Include="Fisiere_Produse.c" />
     <ClCompile Include="Invat_acasa.c" />
     <ClCompile Include="Invat_acasa2.c" />
