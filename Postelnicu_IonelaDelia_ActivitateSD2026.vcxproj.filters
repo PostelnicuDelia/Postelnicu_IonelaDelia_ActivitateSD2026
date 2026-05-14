@@ -54,9 +54,15 @@
     <ClCompile Include="Seminar11.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Seminar12.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="masini.txt" />
     <Text Include="studenti.txt" />
+    <Text Include="Muchii.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

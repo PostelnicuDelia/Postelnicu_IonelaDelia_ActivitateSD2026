@@ -140,9 +140,11 @@
     <ClCompile Include="Seminar08.c" />
     <ClCompile Include="Seminar1.c" />
     <ClCompile Include="Seminar11.c" />
+    <ClCompile Include="Seminar12.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="masini.txt" />
+    <Text Include="Muchii.txt" />
     <Text Include="studenti.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
